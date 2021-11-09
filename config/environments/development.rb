@@ -30,10 +30,21 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
+  ######### ACTION MAILER ########
+  # Set gem letter_opener as delivery method to open email in web browser instead of being sent 
+  # /!\ Ligne à masquer si besoin de tester en production via un SMTP d'un un email sender tel que SendGrid (>>> cf config/environment.rb)
+  config.action_mailer.delivery_method = :letter_opener
+
+  # Authorize email sending through Rails 
+  # /!\ Set false to prevent the app to send emails development
+  config.action_mailer.perform_deliveries = true
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+
+  ######### END ACTION MAILER ########
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

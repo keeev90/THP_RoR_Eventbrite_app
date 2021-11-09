@@ -48,7 +48,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'table_print'
-  # Générer de fausses data en BDD via le seeder
+  # Add random data for seeding
   gem 'faker'
   # Replace the standard Rails error page with a much better and more useful error page
   gem "better_errors"

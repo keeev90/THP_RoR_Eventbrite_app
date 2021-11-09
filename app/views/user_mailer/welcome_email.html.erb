@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bienvenue sur Eventbrite, <%= @user.first_name %> !</h1>
+    <p>
+      Ton compte a bien été créé, voici un résumé de tes infos :
+    </p>
+    <ul>
+      <li>Prénom : <%= @user.first_name %></li>
+      <li>Nom : <%= @user.last_name %></li>
+      <li>Adresse mail : <%= @user.email %></li>
+    </ul>
+    <p>GO GO GO : <%= link_to 'Me connecter', @url %> ! 😎</p>
+  </body>
+</html>
