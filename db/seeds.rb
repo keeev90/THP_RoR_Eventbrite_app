@@ -23,7 +23,8 @@ Attendance.destroy_all
     first_name: first_name,
     last_name: last_name,
     email: email,
-    description: Faker::Superhero.descriptor
+    description: Faker::Superhero.descriptor,
+    password: "#{first_name.downcase}-#{last_name.downcase}"
     )
 end
 

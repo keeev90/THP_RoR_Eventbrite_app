@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
   #CALLBACKS
   after_create :welcome_send
 
@@ -8,15 +13,12 @@ class User < ApplicationRecord
   has_many :events, through: :attendances
 
   #VALIDATIONS
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  #validates :first_name, presence: true
+  #validates :last_name, presence: true
   validates :email,
     presence: true,
     uniqueness: true,
     format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Please enter a valid email adress" }  
-  
-  #has_secure_password #indiquer que bcrypt est en charge de gérer et hasher les mots de passe
-  #validates :password, presence: true, length: { minimum: 6 }
 
   private
 

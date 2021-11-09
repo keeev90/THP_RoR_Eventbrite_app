@@ -13,8 +13,8 @@ class Event < ApplicationRecord
   validate :start_date_must_be_from_today
   validate :duration_must_be_a_positive_multiple_of_5
 
-  def end_date #convertir en jours et de type integer
-    start_date.to_i + (duration.to_i)/(60*24) #https://stackoverflow.com/questions/4502245/how-can-i-find-the-number-of-days-between-two-date-objects-in-ruby
+  def end_date
+    start_date + duration.minutes
   end
 
   def period

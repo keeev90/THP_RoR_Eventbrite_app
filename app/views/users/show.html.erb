@@ -1,0 +1,43 @@
+<!-- Profile info -->
+<div class="row align-item-center justify-content-center pt-4">
+  <div class="col-sm-10 py-4">
+    <div class="card">
+      <h5 class="card-header">Mes informations</h5>
+      <div class="card-body">
+        <p class="card-text">Prénom : <%=@user.first_name%></p>
+        <p class="card-text">Nom : <%=@user.last_name%></p>
+        <p class="card-text">Description : <%=@user.description%></p>
+        <p class="card-text">Email : <%=@user.description%></p>
+        <p><a><%= link_to "Modifier mes informations de profil", edit_user_path(@user.id), class: "btn btn-primary" %></a></p>
+        <p><a><%= link_to "Modifier mes informations de connexion", edit_user_registration_path, class: "btn btn-secondary" %></a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<br/><br/><br/>
+<!-- Admin events -->
+<div class="row align-item-center justify-content-center">
+  <div class="col-sm-10">
+    <div class="card">
+      <h5 class="card-header">Mes évènements</h5>
+      <div class="card-body">
+        <div class="row card-deck justify-content-center">
+          <% @events.each do |event| %>
+            <div class="col-sm-5 mx-2 my-4">
+              <div class="card">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%=event.title%></h5>
+                  <p class="card-text"><%=event.start_date%></p>
+                  <p class="card-text"><%=event.price%>€</p>
+                  <a><%= link_to "Voir plus", event_path(event.id), class: "btn btn-primary" %></a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/><br/><br/>
