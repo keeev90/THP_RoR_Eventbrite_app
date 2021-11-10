@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @events = @user.administrated_events
   end
 
-  def edit # TO DO : form à faire pour modifier :first_name, :last_name, :description
+  def edit # TO DO : form pour modifier :first_name, :last_name, :description
     @user = User.find(params[:id])
   end
 
