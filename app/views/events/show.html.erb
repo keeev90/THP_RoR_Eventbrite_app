@@ -14,7 +14,15 @@
       <div class="card-footer">
         <small class="text-muted">By <%=@event.admin.first_name%></small>
       </div>
-      <p><a><%= link_to "Revenir à l'accueil", root_path, class: "btn btn-primary" %></a></p>
+      <% if @event.admin != current_user && @event.customers.exclude?(current_user) %>
+      <p><a><%= link_to "S'inscrire à l'évènement", new_attendance_path, class: "btn btn-primary" %></a></p>
+      <% end %>
+      <% if current_user == @event.admin %>
+      <p><a><%= link_to "Voir la liste des participants", event_attendances_path, class: "btn btn-info" %></a></p>
+      <p><a><%= link_to "Modifier l'évènement", edit_event_path(@event.id), class: "btn btn-warning" %></a></p>
+      <p><a><%= link_to "Supprimer l'évènement", event_path(@event.id), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></a></p>
+      <% end %>
+      <p><a><%= link_to "Revenir à l'accueil", root_path, class: "btn btn-secondary" %></a></p>
     </div>
   </div>
 </div>

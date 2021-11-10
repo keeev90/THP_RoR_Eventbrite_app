@@ -40,10 +40,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# Secure saving of API keys (ex : for email sender plateform like SendGrid). 
-# /!\ DON'T FORGET TO WRITE ".env" INSIDE THE .gitignore FILE
-gem 'dotenv-rails'
-
 # Session user management
 gem 'devise'
 
@@ -56,6 +52,9 @@ group :development, :test do
   # Replace the standard Rails error page with a much better and more useful error page
   gem "better_errors"
   gem "binding_of_caller"
+  # Secure saving of API keys (ex : for email sender plateform like SendGrid). 
+  # /!\ DON'T FORGET TO WRITE ".env" INSIDE THE .gitignore FILE
+  gem 'dotenv-rails'
 end
 
 group :development do

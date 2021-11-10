@@ -33,7 +33,7 @@ Rails.application.configure do
   ######### ACTION MAILER ########
   # Set gem letter_opener as delivery method to open email in web browser instead of being sent 
   # /!\ Ligne à masquer si besoin de tester en production via un SMTP d'un un email sender tel que SendGrid (>>> cf config/environment.rb)
-  # config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :letter_opener
 
   # Authorize email sending through Rails 
   # /!\ Set false to prevent the app to send emails development

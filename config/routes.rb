@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'attendance/index'
+  get 'attendance/new'
+  get 'attendance/create'
+  get 'attendance/edit'
+  get 'attendance/update'
   # Specify what Rails should route '/'. The root route only routes GET requests to the action > https://edgeguides.rubyonrails.org/routing.html
   root 'events#index'
 

@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ @charset "UTF-8";
+
+ .jumbotron {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background: linear-gradient(to bottom, rgba(240, 237, 236, 0.116) 0%, rgba(243, 241, 240, 0.158) 100%), url("https://images.pexels.com/photos/976866/pexels-photo-976866.jpeg?cs=srgb&dl=pexels-josh-sorenson-976866.jpg&fm=jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}

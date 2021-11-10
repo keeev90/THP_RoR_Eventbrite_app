@@ -7,7 +7,7 @@
         <p class="card-text">Prénom : <%=@user.first_name%></p>
         <p class="card-text">Nom : <%=@user.last_name%></p>
         <p class="card-text">Description : <%=@user.description%></p>
-        <p class="card-text">Email : <%=@user.description%></p>
+        <p class="card-text">Email : <%=@user.email%></p>
         <p><a><%= link_to "Modifier mes informations de profil", edit_user_path(@user.id), class: "btn btn-primary" %></a></p>
         <p><a><%= link_to "Modifier mes informations de connexion", edit_user_registration_path, class: "btn btn-secondary" %></a></p>
       </div>
@@ -30,7 +30,10 @@
                   <h5 class="card-title"><%=event.title%></h5>
                   <p class="card-text"><%=event.start_date%></p>
                   <p class="card-text"><%=event.price%>€</p>
-                  <a><%= link_to "Voir plus", event_path(event.id), class: "btn btn-primary" %></a>
+                  <p><a><%= link_to "En savoir plus", event_path(event.id), class: "btn btn-link" %></a></p>
+                  <p><a><%= link_to "Voir la liste des participants", event_attendances_path, class: "btn btn-info" %></a></p>
+                  <p><a><%= link_to "Modifier l'évènement", edit_event_path(event.id), class: "btn btn-warning" %></a></p>
+                  <p><a><%= link_to "Supprimer l'évènement", event_path(event.id), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></a></p>
                 </div>
               </div>
             </div>
