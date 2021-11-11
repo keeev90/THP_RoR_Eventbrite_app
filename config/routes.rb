@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'attendance/index'
-  get 'attendance/new'
-  get 'attendance/create'
-  get 'attendance/edit'
-  get 'attendance/update'
   # Specify what Rails should route '/'. The root route only routes GET requests to the action > https://edgeguides.rubyonrails.org/routing.html
   root 'events#index'
 
@@ -13,7 +8,9 @@ Rails.application.routes.draw do
 
   # Autres routes dont le controller manipule des données en base ou des données temporaires (via méthodes CRUD)
   resources :users, only: [:show, :edit, :update]
-  resources :events
+  resources :events do 
+    resources :attendances, only: [:index, :new, :create]
+  end
   
 end
 

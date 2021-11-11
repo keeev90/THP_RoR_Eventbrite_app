@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -43,18 +43,19 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Session user management
 gem 'devise'
 
+# Online paiement service
+gem 'stripe'
+
+# Add random data for seeding
+gem 'faker'
+
+# Secure saving of API keys (ex : for email sender plateform like SendGrid). 
+# /!\ DON'T FORGET TO WRITE ".env" INSIDE THE .gitignore FILE
+gem 'dotenv-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'table_print'
-  # Add random data for seeding
-  gem 'faker'
-  # Replace the standard Rails error page with a much better and more useful error page
-  gem "better_errors"
-  gem "binding_of_caller"
-  # Secure saving of API keys (ex : for email sender plateform like SendGrid). 
-  # /!\ DON'T FORGET TO WRITE ".env" INSIDE THE .gitignore FILE
-  gem 'dotenv-rails'
 end
 
 group :development do
@@ -64,6 +65,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Print tables in rails console
+  gem 'table_print'
+  # Replace the standard Rails error page with a much better and more useful error page
+  gem "better_errors"
+  gem "binding_of_caller"
   # Ouvrir un email dans le navigateur web
   gem "letter_opener"
 end

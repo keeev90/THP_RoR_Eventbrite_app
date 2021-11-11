@@ -11,12 +11,19 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Bienvenue #{@user.first_name} ! 🙌") 
   end
 
-  def attendance_email(attendance)
+  def new_order_email(attendance)
     @event = attendance.event
     @customer = attendance.customer
-    @url  = 'https://eventbrite-app-kl.herokuapp.com/' 
+    @url  = 'http://eventbrite-app-kl.herokuapp.com/events/#{@event.id}' 
     mail(to: @event.admin.email, subject: "Nouvelle participation à l'événement #{@event.title} 🎉"
     )
+  end
+
+  def order_validation_email(user, event)
+    @user = user
+    @event = event
+    @url = 'http://eventbrite-app-kl.herokuapp.com/events/#{@event.id}'
+    mail(to: @user.email, subject: "Vous êtes inscrit à un event !")
   end
 
     # en production avec une API d'un email sender

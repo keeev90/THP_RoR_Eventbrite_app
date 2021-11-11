@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :is_admin?, only: [:edit, :update, :destroy]
 
   def index
-    @events = Event.all #transmettre les données de la table events à la view (sous forme d'array de hashs)
+    @events = Event.all
   end
 
   def show
@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
     @durations_array = []
     50.times do |i|
       @durations_array << (i + 1) * 5
@@ -27,7 +28,6 @@ class EventsController < ApplicationController
       event['start_date(5i)'].to_i,
       event['start_date(6i)'].to_i,
     )
-
     @event = Event.new(
       title: params_event[:title],
       description: params_event[:description],
@@ -47,9 +47,16 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:id])
   end
 
   def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, success: "Votre évènement a été édité avec succès !"
+    else
+      render :edit
+    end
   end
 
   def destroy # ajouter remboursement et emailing en cas d'inscriptations déjà enregistrées
@@ -57,6 +64,12 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to root_path
     flash[:success] = "L'évènement a bien été supprimé."
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:title, :description, :location, :start_date, :duration, :price)
   end
 
 end

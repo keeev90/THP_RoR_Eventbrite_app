@@ -14,7 +14,7 @@ User.destroy_all
 Event.destroy_all
 Attendance.destroy_all
 
-10.times do
+20.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   email = "#{first_name.downcase}-#{last_name.downcase}@yopmail.com"
@@ -28,15 +28,15 @@ Attendance.destroy_all
     )
 end
 
-5.times do
+10.times do
   Event.create!(
     title: Faker::DcComics.title,
-    description: Faker::Lorem.paragraphs,
+    description: Faker::Lorem.sentence(word_count: 50 + rand(1..100)),
     start_date: Faker::Time.between(from: DateTime.now + 1, to: DateTime.now + 30),
     duration: 5 * rand(1..60),
-    location: Faker::Address.city,
+    location: Faker::Address.unique.city,
     price: rand(1..1000),
-    admin: User.all.sample
+    admin_id: User.all.sample.id
     )
 end
 
