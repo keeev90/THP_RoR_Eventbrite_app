@@ -31,13 +31,14 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   ######### ACTION MAILER ########
-  # Set gem letter_opener as delivery method to open email in web browser instead of being sent 
-  # /!\ Ligne à masquer si besoin de tester en production via un SMTP d'un un email sender tel que SendGrid (>>> cf config/environment.rb)
-  config.action_mailer.delivery_method = :letter_opener
 
   # Authorize email sending through Rails 
   # /!\ Set false to prevent the app to send emails development
   config.action_mailer.perform_deliveries = true
+
+  # Set gem letter_opener as delivery method to open email in web browser instead of being sent 
+  # /!\ Ligne à masquer si besoin de tester en production via un SMTP d'un un email sender tel que SendGrid (>>> cf config/environment.rb)
+  # config.action_mailer.delivery_method = :letter_opener
 
   # Set default URL for emailing if no other SMTP (cf config/environment.rb)
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
