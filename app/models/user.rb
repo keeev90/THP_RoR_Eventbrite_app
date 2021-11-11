@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :attendances, foreign_key: 'customer_id', class_name: "Attendance", dependent: :destroy # Ces attendances correspondent à la colonne customer_id de la classe Attendance >>> permet de faire des méthodes .customer et .attendances
   has_many :events, through: :attendances
 
+  #ACTIVE STORAGE
+  has_one_attached :profile_picture
+
   #VALIDATIONS
   #validates :first_name, presence: true
   #validates :last_name, presence: true

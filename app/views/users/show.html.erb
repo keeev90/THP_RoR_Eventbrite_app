@@ -1,6 +1,6 @@
 <!-- Profile info -->
 <div class="row align-item-center justify-content-center pt-4">
-  <div class="col-sm-10 py-4">
+  <div class="col-sm-5 py-4">
     <div class="card">
       <h5 class="card-header">Mes informations</h5>
       <div class="card-body">
@@ -10,6 +10,23 @@
         <p class="card-text">Email : <%=@user.email%></p>
         <p><a><%= link_to "Modifier mes informations de profil", edit_user_path(@user.id), class: "btn btn-primary" %></a></p>
         <p><a><%= link_to "Modifier mes informations de connexion", edit_user_registration_path, class: "btn btn-secondary" %></a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5 py-4">
+    <div class="card">
+      <h5 class="card-header">Ma photo de profil</h5>
+      <div class="card-body">
+        <%if @user.profile_picture.attached?%>
+          <%= image_tag @user.profile_picture, alt: 'profile_picture' %>
+        <%else%>
+          <p>=== Il n'y a pas encore de photo de profil ===</p>
+          <h5 class="card-header">Modifier ma photo de profil</h5>
+          <%= form_tag user_profile_pictures_path(@user), multipart: true do %>
+            <%= file_field_tag :profile_picture %>
+            <%= submit_tag "Ajouter une photo de profil" %>
+          <% end %>
+        <%end%>
       </div>
     </div>
   </div>

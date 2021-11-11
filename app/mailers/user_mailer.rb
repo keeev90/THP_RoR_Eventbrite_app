@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
     @url  = 'https://eventbrite-app-kl.herokuapp.com/sign_in' 
 
     # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-    mail(to: @user.email, subject: "Bienvenue #{@user.first_name} ! 🙌") 
+    mail(to: @user.email, subject: "Bienvenue sur Eventbrite ! 🙌") 
   end
 
   def new_order_email(attendance)

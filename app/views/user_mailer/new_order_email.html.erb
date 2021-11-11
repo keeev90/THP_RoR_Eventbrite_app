@@ -6,13 +6,9 @@
   <body>
     <h1>Nouvelle participation à votre événément : <%= @event.title %></h1>
     
-    <p>Bonjour <%= @event.admin.first_name %> !</p>
+    <p>Bonjour !</p>
 
-    <p>
-      <%= "#{@customer.first_name} #{@customer.last_name}" %>
-      vient de s'inscrire à votre événement <%= @event.title %> 
-      qui aura lieu le 
-      <%= "#{@event.start_date.strftime("%d/%m/%Y à %k:%M")}" %>
+    <p><%= @customer.email %> vient de s'inscrire à votre événement <%= @event.title %> qui aura lieu le <%= @event.start_date.strftime("%d/%m/%Y à %k:%M") %>
     </p>
 
     <p>Pour accéder à votre événement, c'est <%= link_to 'par ici', '#' %> !</p>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Autres routes dont le controller manipule des données en base ou des données temporaires (via méthodes CRUD)
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :profile_pictures, only: [:create] # imbriquer la route dans le resources :users pour lui rajouter un /users/user_id/ en amont.
+  end
   resources :events do 
     resources :attendances, only: [:index, :new, :create]
   end
