@@ -12,31 +12,11 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @durations_array = []
-    50.times do |i|
-      @durations_array << (i + 1) * 5
-    end
   end
   
   def create
-    params_event = params[:event]
-    datetime = DateTime.new(
-      event['start_date(1i)'].to_i,
-      event['start_date(2i)'].to_i,
-      event['start_date(3i)'].to_i,
-      event['start_date(4i)'].to_i,
-      event['start_date(5i)'].to_i,
-      event['start_date(6i)'].to_i,
-    )
-    @event = Event.new(
-      title: params_event[:title],
-      description: params_event[:description],
-      location: params_event[:location],
-      start_date: datetime,
-      duration: params_event[:duration].to_i,
-      price: params_event[:price].to_i,
-      admin: current_user
-    )
+    @event = Event.new(event_params)
+    @event.admin = current_user
     if @event.save 
       flash[:success] = "L'évènement a bien été créé." 
       redirect_to root_path
@@ -61,9 +41,13 @@ class EventsController < ApplicationController
 
   def destroy # ajouter remboursement et emailing en cas d'inscriptations déjà enregistrées
     @event = Event.find(params[:id])
-    @event.destroy
-    redirect_to root_path
-    flash[:success] = "L'évènement a bien été supprimé."
+    if @event.destroy
+      redirect_to root_path
+      flash[:success] = "L'évènement a bien été supprimé."
+    else 
+      redirect_to @event
+      flash[:warning] = "Erreur : l'évènement n'a pas été supprimé"
+    end
   end
 
   private

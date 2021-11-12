@@ -3,6 +3,9 @@ class Event < ApplicationRecord
   has_many :attendances
   has_many :customers, class_name: "User", through: :attendances # indique que Event a plusieurs customers, qui sont en fait de la classe User
 
+  #ACTIVE STORAGE
+  has_one_attached :event_picture
+
   validates :title, presence: true, length: { in: 3..140, message: ": Le nombre de caractère doit être compris entre 5 et 140" }
   validates :description, presence: true, length: { in: 20..1000, message: ": Le nombre de caractère doit être compris entre 20 et 1000" }
   validates :start_date, presence: true

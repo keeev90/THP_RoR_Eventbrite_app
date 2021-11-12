@@ -24,7 +24,7 @@
           <h5 class="card-header">Modifier ma photo de profil</h5>
           <%= form_tag user_profile_pictures_path(@user), multipart: true do %>
             <%= file_field_tag :profile_picture %>
-            <%= submit_tag "Ajouter une photo de profil" %>
+            <%= submit_tag "Envoyer l'image" %>
           <% end %>
         <%end%>
       </div>
@@ -42,7 +42,11 @@
           <% @events.each do |event| %>
             <div class="col-sm-5 mx-2 my-4">
               <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <%if event.event_picture.attached?%>
+                  <%= image_tag event.event_picture, alt: 'event_picture', class: "card-img-top" %>
+                <% else %>
+                  <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                <% end %>
                 <div class="card-body">
                   <h5 class="card-title"><%=event.title%></h5>
                   <p class="card-text"><%=event.start_date%></p>

@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+  default from: ENV['EMAIL_FROM']
  
   def welcome_email(user)
     #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
@@ -26,9 +27,9 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Vous êtes inscrit à un event !")
   end
 
-    # en production avec une API d'un email sender
-    # 1. verify sender adress sur le compte
-    # 2. puis changer le default from de user_mailer.rb avec cette bonne adresse via ajout d'un ENV['EMAIL_FROM'] = sender_email dans le fichier .env 
-    # >>> mail(from: ENV['EMAIL_FROM'], to: @user.email, subject: 'Bienvenue !')
+    # En production avec une API d'un email sender
+    # 1. verify sender adress sur le compte email utilisé pour le sender
+    # 2. puis changer le default from de user_mailer.rb avec cette bonne adresse via ajout d'un ENV['EMAIL_FROM'] (en mettant le sender_email correspondant dans le fichier .env) 
+    # >>> default from: ENV['EMAIL_FROM'] ou mail(from: ENV['EMAIL_FROM'], to: @user.email, subject: 'Bienvenue !')
 
 end

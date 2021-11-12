@@ -6,6 +6,9 @@
       <div class="card-header"><%=@event.title%></div>
       <div class="card-body">
         <h5 class="card-title"><%=@event.description%></h5>
+        <%if @event.event_picture.attached?%>
+          <%= image_tag @event.event_picture, alt: 'event_picture' %>
+        <% end %>
         <p class="card-text">A lieu le <%=@event.start_date.strftime("%d/%m/%Y")%></p>
         <p class="card-text">Durée : <%=@event.duration%> minutes</p>
         <p class="card-text">Prix : <%=@event.price%>€</p>

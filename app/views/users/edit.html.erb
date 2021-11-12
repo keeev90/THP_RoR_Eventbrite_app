@@ -34,7 +34,7 @@
         <br/>
         <%= form_tag user_profile_pictures_path(@user), multipart: true do %>
           <%= file_field_tag :profile_picture %>
-          <%= submit_tag "Mettre à jour ma photo de profil" %>
+          <%= submit_tag "Envoyer l'image" %>
         <% end %>
       </div>
     </div>

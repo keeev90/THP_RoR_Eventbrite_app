@@ -8,10 +8,11 @@ Rails.application.routes.draw do
 
   # Autres routes dont le controller manipule des données en base ou des données temporaires (via méthodes CRUD)
   resources :users, only: [:show, :edit, :update] do
-    resources :profile_pictures, only: [:create] # imbriquer la route dans le resources :users pour lui rajouter un /users/user_id/ en amont.
+    resources :profile_pictures, only: [:create] # imbriquer la route dans le resources :users pour lui rajouter un /users/user_id/ en amont du path.
   end
   resources :events do 
     resources :attendances, only: [:index, :new, :create]
+    resources :event_pictures, only: [:create] # imbriquer la route dans le resources :events pour lui rajouter un /events/event_id/ en amont du path.
   end
   
 end

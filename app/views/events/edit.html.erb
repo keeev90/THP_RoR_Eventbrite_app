@@ -1,0 +1,5 @@
+<h3>Changer d'image ?</h3>
+  <%= form_tag event_event_pictures_path(@event), multipart: true do %>
+    <%= file_field_tag :event_picture %>
+    <%= submit_tag "Envoyer l'image" %>
+  <% end %>
