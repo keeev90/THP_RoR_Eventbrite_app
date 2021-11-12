@@ -67,10 +67,10 @@ Rails.application.configure do
 
   # Authorize email sending through Rails 
   # /!\ Set false to prevent the app to send emails in production (if SMTP not configured) / true to authorize it (if SMTP well configured)
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
 
   # Set default URL for emailing 
-  config.action_mailer.default_url_options = { :host => 'https://eventbrite-app-kl.herokuapp.com' }
+  # config.action_mailer.default_url_options = { :host => 'https://eventbrite-app-kl.herokuapp.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

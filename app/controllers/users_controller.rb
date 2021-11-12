@@ -1,24 +1,22 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit]
   before_action :is_permitted_user?, only: [:show, :edit]
+  before_action :find_user
 
   def show
-    @user = User.find(params[:id])
-    @events = @user.administrated_events
+    @events = current_user.administrated_events # ou @user.administrated_events
   end
 
-  def edit # TO DO : form pour modifier :first_name, :last_name, :description
-    @user = User.find(params[:id])
+  def edit
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
       flash.now[:success] = "Les informations ont bien été modifiées."
     else
       flash.now[:warning] = @user.errors.full_messages
-      render 'edit'
+      render :edit
     end
   end
 
@@ -32,6 +30,10 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:first_name, :last_name, :description)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: eventbrite_app_production
-  username: eventbrite_app # changer le nom d'utilsateur de la base de donées de produtvion par votre nom d'utilisateur linux puis resneigner mdp avec Dotenv
+  username: eventbrite_app # si pb d'accès à la BDD, changer le nom d'utilsateur de la base de donées de produtvion par votre nom d'utilisateur linux puis resneigner mdp avec Dotenv
   password: <%= ENV['EVENTBRITE_APP_DATABASE_PASSWORD'] %>

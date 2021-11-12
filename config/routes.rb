@@ -14,6 +14,14 @@ Rails.application.routes.draw do
     resources :attendances, only: [:index, :new, :create]
     resources :event_pictures, only: [:create] # imbriquer la route dans le resources :events pour lui rajouter un /events/event_id/ en amont du path.
   end
+
+  # Controller Namespaces and Routing >>> https://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing
+  namespace :admin do
+    root 'welcome#index'
+    resources :users
+    resources :events
+    resources :event_validations, only: [:index, :show, :edit, :update]
+  end
   
 end
 

@@ -15,13 +15,25 @@ class Event < ApplicationRecord
   
   validate :start_date_must_be_from_today
   validate :duration_must_be_a_positive_multiple_of_5
+  #validate :has_event_picture?
 
   def end_date
     start_date + duration.minutes
   end
 
+  def has_event_picture?
+    unless self.event_picture.attached?
+      errors.add(:event_picture, "Merci d'ajouter une photo à votre évènement.")
+    end
+  end
+
+  # Not used but in case of ...
   def period
     start_date..end_date
+  end
+
+  def is_free?
+    return self.price == 0
   end
 
   private # pour éviter qu'une méthode soit appelée en dehors de la classe (car elle n'est utile qu'au sein meme de cette classe) >>> https://www.rubyguides.com/2018/10/method-visibility/

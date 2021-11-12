@@ -31,5 +31,6 @@ class UserMailer < ApplicationMailer
     # 1. verify sender adress sur le compte email utilisé pour le sender
     # 2. puis changer le default from de user_mailer.rb avec cette bonne adresse via ajout d'un ENV['EMAIL_FROM'] (en mettant le sender_email correspondant dans le fichier .env) 
     # >>> default from: ENV['EMAIL_FROM'] ou mail(from: ENV['EMAIL_FROM'], to: @user.email, subject: 'Bienvenue !')
+    # 3. Idem dans le fichier 'config/initializers/devise.rb'  >>> config.mailer_sender = 'sender_email_adress'
 
 end

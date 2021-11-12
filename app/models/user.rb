@@ -6,11 +6,12 @@ class User < ApplicationRecord
 
   #CALLBACKS
   after_create :welcome_send
+  after_create :not_website_admin
 
   #ASSOCIATIONS
   has_many :administrated_events, foreign_key: 'admin_id', class_name: "Event", dependent: :destroy # Ces events correspondent à la colonne admin_id de la classe Event >>> permet de faire des méthodes .admin et .administrated_events
   has_many :attendances, foreign_key: 'customer_id', class_name: "Attendance", dependent: :destroy # Ces attendances correspondent à la colonne customer_id de la classe Attendance >>> permet de faire des méthodes .customer et .attendances
-  has_many :events, through: :attendances
+  has_many :events, through: :attendances, dependent: :destroy
 
   #ACTIVE STORAGE
   has_one_attached :profile_picture
@@ -27,6 +28,10 @@ class User < ApplicationRecord
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
+  end
+
+  def not_website_admin
+    self.is_website_admin = false
   end
 
 end
