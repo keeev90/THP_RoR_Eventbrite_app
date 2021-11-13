@@ -1,0 +1,65 @@
+<div class="container">
+
+  <h2 class="my-5 text-center">Son profil</h2>
+
+  <h4>Sa photo de profil</h4>
+  <%if @user.profile_picture.attached? %>
+    <%= image_tag @user.profile_picture, alt: 'user avatar', class: "border rounded-lg", style:"width: 200px;" %>
+  <% else %>
+    <p>Pas de photo !</p>
+  <% end %>
+  <hr>
+
+  <h4>Son nom</h4>
+  <p><%= @user.first_name %></p>
+  <hr>
+
+  <h4>Son prénom</h4>
+  <p><%= @user.last_name %></p>
+  <hr>
+
+  <h4>Son email</h4>
+  <p><%= @user.email %></p>
+  <hr>
+
+  <h4>Sa description</h4>
+  <p><%= @user.description %></p>
+ 
+  <hr/>
+  <br/><br/>
+
+  <%= link_to "Changer son mail ou mot de passe", edit_user_registration_path, class: "nav-link btn btn-warning mx-2 my-2 w-50" %>
+  <br/>
+  <%= link_to "Éditer son profil", edit_admin_user_path(@user), class: "nav-link btn btn-warning mx-2 my-2 w-50" %>
+  <br>
+  <%= link_to  "Retour", :back, class: "btn btn-info" %>
+
+
+  <br/><br/>
+
+  <h4>Ci-dessous la liste des évènements dont il est créateur</h4>
+  <br/>
+
+  <% if @user.administrated_events.count > 0 %>
+
+    <div class="row">
+      <% @user.administrated_events.each do |event|%>
+        <div class="card mx-auto my-4 shadow" style="hover: on; width: 20rem;">
+          <div class="card-body">
+            <h5 class="card-title">#<%= event.id %> : <%= event.title %></h5>
+            <h6 class="card-subtitle mb-2 text-bold" style="color: #e79d8a"><b>Date : <%= event.start_date %></b></h6>
+            <p class="card-text"><%= event.description[0..100] %><%= "…" if event.description.length > 101 %> </p>
+            <p><small class="text-muted"><%= event.admin.email %></small></p>
+            <br/>
+            <%= link_to "Voir les détails", event_path(event.id), class: "d-inline p-2 bg-primary text-white rounded" %></li>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <p>Aucun évènement pour le moment !</p>
+
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 class="my-5 text-center" > Tous les évènements validés </h2>
+  <div class="row">
+    <% @events.each do |event|%>
+      <div class="card mx-auto my-4 shadow" style="hover: on; width: 20rem;">
+        <div class="card-body">
+          <% if event.event_picture.attached? %>
+            <%= image_tag event.event_picture, alt: 'event_picture', class: "border rounded-lg", style: "width: 100%; margin-bottom: 10px;" %>
+          <% end %>
+          <h5 class="card-title">#<%= event.id %> : <%= event.title %></h5>
+          <h6 class="card-subtitle mb-2" style="color: #e79d8a"><b>Date : <%= event.start_date %></b></h6>
+          <p class="card-text"><%= event.description[0..100] %><%= "…" if event.description.length > 101 %> </p>
+          <p><small class="text-muted"><%= event.admin.email %></small></p>
+          <br/>
+          <%= link_to "Voir les détails", event_path(event.id), class: "d-inline p-2 bg-primary text-white rounded" %></li>
+        </div>
+      </div>
+    <% end %>  
+  </div>
+</div>

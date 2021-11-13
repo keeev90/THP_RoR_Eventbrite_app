@@ -1,45 +1,36 @@
-<!-- Alerts / Flash messages -->
-<% flash.each do |key, msg| %>
-  <br/><br/><br/>
-  <div class="alert alert-<%=key%> text-center" role="alert">
-    <%= msg %>
-  </div>
-<% end %>
 <!-- Event form -->
-<div class="row align-item-center justify-content-center mt-4">
-  <div class="col-sm-10">
+<div class="row align-item-center justify-content-center mt-4 mb-4">
+  <div class="col-sm-6">
     <div class="card">
-      <h5 class="card-header">Créer un évènement</h5>
+      <h5 class="card-header text-center">Créer un évènement 😎</h5>
       <div class="card-body">
-        <form>
-        <%= form_with model: @event, local: true do |form| %>
+        <%= form_for(@event, url: events_path, html: { method: :post }) do |f| %>
           <div class="form-group mb-4">
-            <%= form.label :title, 'Titre' %>
-            <%= form.text_field :title, class: 'form-control' %>
+            <%= f.label :title, 'Titre' %>
+            <%= f.text_field :title, class: 'form-control' %>
           </div>
           <div class="form-group mb-4">
-            <%= form.label :description, 'Description' %>
-            <%= form.text_area :description, class: 'form-control' %>
+            <%= f.label :description, 'Description' %>
+            <%= f.text_area :description, class: 'form-control' %>
           </div>
           <div class="form-group mb-4">
-            <%= form.label :location, "Localisation" %>
-            <%= form.text_field :location, class: 'form-control' %>
+            <%= f.label :location, "Localisation" %>
+            <%= f.text_field :location, class: 'form-control' %>
           </div>
           <div class="form-group mb-4">
-            <%= form.label :start_date, "Date" %><br/>
-            <%= form.date_field :start_date, class: 'form-control' %>
+            <%= f.label :start_date, "Date" %><br/>
+            <%= f.date_field :start_date, class: 'form-control' %>
           </div>
           <div class="form-group mb-4">
-            <%= form.label :duration, "Durée de l'évènement (en minutes)" %>
-            <%= form.number_field :duration, in: 15..210, step: 15, class: 'form-control' %>
+            <%= f.label :duration, "Durée de l'évènement (en minutes)" %>
+            <%= f.number_field :duration, in: 15..210, step: 15, class: 'form-control' %>
           </div>
           <div class="form-group mb-4">
-            <%= form.label :price, "Prix par entrée (en €)" %>
-            <%= form.number_field :price, in: 5..1000, step: 5, class: 'form-control' %>
+            <%= f.label :price, "Prix par entrée (en €)" %>
+            <%= f.number_field :price, in: 5..1000, step: 5, class: 'form-control' %>
           </div>
-          <%= form.submit "Créer l'évènement", class: 'btn btn-primary' %>
+          <%= f.submit "Créer l'évènement", class: 'btn btn-primary' %>
         <% end %>
-        </form>
       </div>
     </div>
   </div>

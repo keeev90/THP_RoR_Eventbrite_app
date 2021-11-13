@@ -31,7 +31,7 @@ class Admin::EventValidationsController < Admin::WelcomeController
   end
 
   def is_website_admin?
-    unless current_user.is_website_admin
+    unless current_user.is_website_admin == true
       redirect_to root_path, danger: "Accès refusé. Vous n'êtes pas administrateur de ce site."
     end
   end

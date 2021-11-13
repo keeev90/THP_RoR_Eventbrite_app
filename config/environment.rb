@@ -20,7 +20,7 @@ ActionMailer::Base.smtp_settings = {
 
 # 3. Tester l'envoi directement depuis l'environnement de développement (ton ordi)
 # Enlève la ligne config.action_mailer.delivery_method = :letter_opener du fichier config/environments/development.rb ;
-# Va dans ta console Rails ;
+# Va dans ta console Rails :
 # Créé un utilisateur avec une adresse en @yopmail.com (habituées à servir de poubelle et du coup cela évite que les emails de tests soient considérés comme du spam et tout simplement rejetés par la majorité des serveurs e-mails)
 # Va vérifier que l’e-mail est bien arrivé sur http://www.yopmail.com/.
 

@@ -13,8 +13,9 @@ module UsersHelper
   #  current_user == user ? true : false
   #end
 
-  # restreindre l'accès au user concerné (page profil)
+  # restreindre l'accès au user concerné
   def is_admin?
+    @event = Event.find(params[:id])
     unless current_user == @event.admin
       flash[:danger] = "Vous n'êtes pas autorisé(e) à accéder à cette page"
       redirect_to root_path
