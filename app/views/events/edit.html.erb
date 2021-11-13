@@ -1,5 +1,55 @@
-<h3>Changer d'image ?</h3>
-  <%= form_tag event_event_pictures_path(@event), multipart: true do %>
-    <%= file_field_tag :event_picture %>
-    <%= submit_tag "Envoyer l'image" %>
-  <% end %>
+<!-- Edit event info -->
+<div class="row align-item-center justify-content-center pt-4 pb-4">
+  <div class="col-sm-5 py-4">
+    <div class="card">
+      <h5 class="card-header">Modifier les informations sur l'évènement</h5>
+      <div class="card-body">
+        <%= form_for(@event, url: event_path(@event), html: { method: :put }) do |f| %>
+          <div class="form-group mb-4">
+            <%= f.label :title, 'Titre' %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :description, 'Description' %>
+            <%= f.text_area :description, class: 'form-control' %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :location, "Localisation" %>
+            <%= f.text_field :location, class: 'form-control' %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :start_date, "Date" %><br/>
+            <%= f.date_field :start_date, class: 'form-control' %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :duration, "Durée de l'évènement (en minutes)" %>
+            <%= f.number_field :duration, in: 15..210, step: 15, class: 'form-control' %>
+          </div>
+          <div class="form-group mb-4">
+            <%= f.label :price, "Prix par entrée (en €)" %>
+            <%= f.number_field :price, in: 5..1000, step: 5, class: 'form-control' %>
+          </div>
+          <%= f.submit "Modifier l'évènement", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- Edit event-picture -->
+  <div class="col-sm-5 py-4">
+    <div class="card">
+      <h5 class="card-header">Modifier la photo de l'évènement</h5>
+      <div class="card-body">
+        <%if @event.event_picture.attached?%>
+          <%= image_tag @event.event_picture, alt: 'event_picture' %>
+        <%else%>
+          <p>=== Il n'y a pas encore de photo ===</p>
+        <% end %>
+        <br/>
+        <%= form_tag event_event_pictures_path(@event), multipart: true do %>
+          <%= file_field_tag :event_picture %>
+          <%= submit_tag "Envoyer l'image" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
