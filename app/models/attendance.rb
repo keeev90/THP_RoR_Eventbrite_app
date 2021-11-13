@@ -13,7 +13,7 @@ class Attendance < ApplicationRecord
 
   def send_order_validation_to_customer
     event = self.event
-    customer = self.user
+    customer = self.customer # pb ?????
     UserMailer.order_validation_email(customer, event).deliver_now
   end
   

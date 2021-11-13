@@ -31,7 +31,9 @@ class AttendancesController < ApplicationController
     end
     # After the rescue, if the payment succeeded
     # Par exemple : enregistrer cette commande en base de données (ou vider un panier...)
-    Attendance.create(stripe_customer_id: customer.id, customer: current_user, event: @event) if charge.paid 
+    Attendance.create(stripe_customer_id: customer.id, customer: current_user, event: @event) if charge.paid
+    redirect_to root_path 
+    flash[:success] = "Votre inscription est bien enregistrée, un email de confirmation a été envoyé."
 
     # Doc Stripe API pour jouer sur les objets Stripe (ex : customer, charge, etc): 
     # https://stripe.com/docs/api/charges/object?lang=ruby

@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
     @user = user 
 
     #on définit une variable @url qu'on utilisera dans la view d’e-mail
-    @url  = 'https://eventbrite-app-kl.herokuapp.com/sign_in' 
+    @url  = "https://eventbrite-app-kl.herokuapp.com/sign_in" 
 
     # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
     mail(to: @user.email, subject: "Bienvenue sur Eventbrite ! 🙌") 
@@ -15,15 +15,14 @@ class UserMailer < ApplicationMailer
   def new_order_email(attendance)
     @event = attendance.event
     @customer = attendance.customer
-    @url  = 'http://eventbrite-app-kl.herokuapp.com/events/#{@event.id}' 
-    mail(to: @event.admin.email, subject: "Nouvelle participation à l'événement #{@event.title} 🎉"
-    )
+    @url  = "http://eventbrite-app-kl.herokuapp.com/events/#{@event.id}" 
+    mail(to: @event.admin.email, subject: "Nouvelle participation à l'événement #{@event.title} 🎉")
   end
 
-  def order_validation_email(user, event)
+  def order_validation_email(user, event) # pb ???? mettre customer plutot que user ?
     @user = user
     @event = event
-    @url = 'http://eventbrite-app-kl.herokuapp.com/events/#{@event.id}'
+    @url = "http://eventbrite-app-kl.herokuapp.com/events/#{@event.id}"
     mail(to: @user.email, subject: "Vous êtes inscrit à un event !")
   end
 
