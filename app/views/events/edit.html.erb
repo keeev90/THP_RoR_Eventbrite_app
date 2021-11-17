@@ -1,5 +1,8 @@
+<div class="row align-item-center justify-content-center text-center my-4">
+  <h2>Bienvenue dans ton espace évènement : <%= @event.title %></h2>
+</div>
 <!-- Edit event info -->
-<div class="row align-item-center justify-content-center pt-4 pb-4">
+<div class="row align-item-center justify-content-center pb-4">
   <div class="col-sm-5 py-4">
     <div class="card">
       <h5 class="card-header">Modifier les informations sur l'évènement</h5>
@@ -31,6 +34,9 @@
           </div>
           <%= f.submit "Modifier l'évènement", class: 'btn btn-primary' %>
         <% end %>
+        <div class="my-4">
+          <a><%= link_to "Supprimer l'évènement", event_path(@event.id), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></a>
+        </div>
       </div>
     </div>
   </div>
@@ -51,5 +57,32 @@
         <% end %>
       </div>
     </div>
+  </div>
+</div>
+<!-- Attendees -->
+<div class="row justify-content-center mb-4">
+  <div class="col-10 py-4">
+    <div class="card">
+      <h5 class="card-header">Liste des participants</h5>
+      <div class="card-body">
+        <% if @event.customers.count == 0 %>
+          <h5>Aucune personne n'est inscrite pour le moment</h5>
+        <% else %>
+        <% @event.customers.each do |customer|%>
+          <div class="row">
+            <div class="col">
+              <%= customer.first_name %> <%= customer.last_name %>
+            </div>
+            <div class="col">
+              <%= customer.email %>
+            </div>
+          </div>
+          <hr>
+        <% end %> 
+      </div>
+    </div>
+    <% end %>
+    <br><br>
+    <%= link_to "Retour", :back, class: "btn btn-info" %>
   </div>
 </div>

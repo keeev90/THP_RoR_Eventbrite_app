@@ -52,9 +52,7 @@
                   <p class="card-text"><%=event.start_date%></p>
                   <p class="card-text"><%=event.price%>€</p>
                   <p><a><%= link_to "En savoir plus", event_path(event.id), class: "btn btn-link" %></a></p>
-                  <p><a><%= link_to "Voir la liste des participants", event_attendances_path(event.id), class: "btn btn-info" %></a></p>
-                  <p><a><%= link_to "Modifier l'évènement", edit_event_path(event.id), class: "btn btn-warning" %></a></p>
-                  <p><a><%= link_to "Supprimer l'évènement", event_path(event.id), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></a></p>
+                  <p><a><%= link_to "Gérer l'évènement", edit_event_path(event.id), class: "btn btn-warning" %></a></p>
                 </div>
               </div>
             </div>

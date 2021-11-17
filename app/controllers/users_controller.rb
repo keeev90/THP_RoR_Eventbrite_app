@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = "Les informations ont bien été modifiées."
       redirect_to user_path(@user.id)
-      flash.now[:success] = "Les informations ont bien été modifiées."
     else
       flash.now[:warning] = @user.errors.full_messages
       render :edit
@@ -22,8 +22,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    flash[:success] = "Votre compte a été supprimé avec succès."
     redirect_to root_path
-    flash.now[:success] = "Votre compte a été supprimé avec succès."
   end
 
   private 

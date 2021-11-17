@@ -26,15 +26,15 @@ class AttendancesController < ApplicationController
       currency: 'eur',
       })
     rescue Stripe::CardError => e
-      flash[:error] = e.message
+      flash[:warning] = e.message
       redirect_to new_event_attendance_path(@event)
     end
     # After the rescue, if the payment succeeded
     # Par exemple : enregistrer cette commande en base de données (ou vider un panier...)
     Attendance.create(stripe_customer_id: customer.id, customer: current_user, event: @event) if charge.paid
-    redirect_to root_path 
     flash[:success] = "Votre inscription est bien enregistrée, un email de confirmation a été envoyé."
-
+    redirect_to root_path 
+    
     # Doc Stripe API pour jouer sur les objets Stripe (ex : customer, charge, etc): 
     # https://stripe.com/docs/api/charges/object?lang=ruby
     # https://stackoverflow.com/questions/26985956/checking-for-a-successful-charge-using-stripe-for-rails

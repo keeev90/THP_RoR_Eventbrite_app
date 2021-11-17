@@ -6,23 +6,23 @@
   <% if @event.customers.count == 0 %>
     <div class="card">
       <h5 class="card-header">Aucune personne n'est inscrite pour le moment</h5>
-      <p><a><%= link_to "Supprimer l'évènement", event_path(@event.id), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></a></p>
+      <p><a><%= link_to "Supprimer l'évènement", event_path(@event), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></a></p>
     </div>
   <% else %>
     <div class="card">
       <h5 class="card-header">Liste des participants</h5>
       <div class="card-body">
-          <% @event.customers.each do |customer|%>
-            <div class="row">
-              <div class="col-sm col-lg-4">
-                <%= customer.first_name %> <%= customer.last_name %>
-              </div>
-              <div class="col-sm col-lg-5">
-                <%= customer.email %>
-              </div>
+        <% @event.customers.each do |customer|%>
+          <div class="row">
+            <div class="col-sm col-lg-4">
+              <%= customer.first_name %> <%= customer.last_name %>
             </div>
-            <hr>
-          <% end %> 
+            <div class="col-sm col-lg-5">
+              <%= customer.email %>
+            </div>
+          </div>
+          <hr>
+        <% end %> 
       </div>
     </div>
   <% end %>

@@ -21,7 +21,7 @@ class EventsController < ApplicationController
       flash[:success] = "L'évènement a bien été créé." 
       redirect_to root_path
     else
-      flash[:warning] = @event.errors.full_messages
+      flash.now[:warning] = @event.errors.full_messages
       render :new
     end
   end
@@ -33,8 +33,10 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to @event, success: "Votre évènement a été édité avec succès !"
+      flash[:success] = "Votre évènement a été édité avec succès !"
+      redirect_to @event
     else
+      flash.now[:warning] = @event.errors.full_messages
       render :edit
     end
   end
@@ -42,11 +44,11 @@ class EventsController < ApplicationController
   def destroy # ajouter remboursement et emailing en cas d'inscriptations déjà enregistrées
     @event = Event.find(params[:id])
     if @event.destroy
-      redirect_to root_path
       flash[:success] = "L'évènement a bien été supprimé."
+      redirect_to root_path
     else 
+      flash.now[:warning] = "Erreur : l'évènement n'a pas été supprimé"
       redirect_to @event
-      flash[:warning] = "Erreur : l'évènement n'a pas été supprimé"
     end
   end
 
