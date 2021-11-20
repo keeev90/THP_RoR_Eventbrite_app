@@ -7,4 +7,8 @@ module AttendancesHelper
   def find_event
     @event = Event.find(params[:event_id])
   end
+
+  def find_event_bis
+    @event = Event.find(params[:id])
+  end
 end

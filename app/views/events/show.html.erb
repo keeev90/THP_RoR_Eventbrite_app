@@ -18,7 +18,7 @@
         <small class="text-muted">By <%=@event.admin.first_name%></small>
       </div>
       <% if @event.admin != current_user && @event.customers.exclude?(current_user) %>
-        <p><a><%= link_to "S'inscrire à l'évènement", new_event_attendance_path(@event.id), class: "btn btn-primary" %></a></p>
+        <%= button_to "S'inscrire à l'évènement", checkout_create_path(price: @event.price, event_id: @event.id), class: "btn btn-primary", remote: true %>
       <% elsif current_user == @event.admin %>
         <p><a><%= link_to "Voir la liste des participants", event_attendances_path(@event.id), class: "btn btn-info" %></a></p>
         <p><a><%= link_to "Modifier l'évènement", edit_event_path(@event.id), class: "btn btn-warning" %></a></p>
