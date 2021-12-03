@@ -17,3 +17,6 @@
 7. $ rails s
 8. Se rendre sur http://localhost:3000/
 9. Enjoy !
+
+## Version online en production via Heroku (not fully completed)
+[eventbrite-app](http://eventbrite-app-kl.herokuapp.com/)
