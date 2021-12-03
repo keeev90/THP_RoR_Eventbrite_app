@@ -1,24 +1,19 @@
-# README
+# WELCOME !
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Versions
 
-Things you may want to cover:
+- Ruby V 2.7.4
+- Ruby On Rails V 5.2.3
+- Fonctionne avec postgreSQL
 
-* Ruby version
+## Installation et lancement
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Ouvrir un terminal
+2. Se positionner dans le répertoire du projet
+3. $ bundle install
+4. $ db:create
+5. $ db:migrate
+6. $ db:seed
+7. $ rails s
+8. Se rendre sur http://localhost:3000/
+9. Enjoy !
